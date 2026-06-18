@@ -5,7 +5,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 ## Features
 
 - View all available extracurricular activities
-- Sign up for activities
+- Teacher login/logout
+- Teacher-only student signup and unregister actions
 
 ## Getting Started
 
@@ -30,7 +31,15 @@ A super simple FastAPI application that allows students to view and sign up for 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
-| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| POST   | `/auth/login`                                                     | Login as teacher and receive auth token                             |
+| POST   | `/auth/logout`                                                    | Logout teacher and invalidate token                                 |
+| GET    | `/auth/session`                                                   | Validate current session token                                      |
+| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Register a student (teacher auth required)                          |
+| DELETE | `/activities/{activity_name}/unregister?email=student@mergington.edu` | Unregister a student (teacher auth required)                   |
+
+For teacher-only endpoints, include the header:
+
+`X-Auth-Token: <token from /auth/login>`
 
 ## Data Model
 
@@ -48,3 +57,7 @@ The application uses a simple data model with meaningful identifiers:
    - Grade level
 
 All data is stored in memory, which means data will be reset when the server restarts.
+
+## Teacher Credentials
+
+Teacher usernames/passwords are stored in [teachers.json](teachers.json) and loaded by the backend.

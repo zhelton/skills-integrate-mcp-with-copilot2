@@ -16,7 +16,6 @@ body {
 }
 
 header {
-  text-align: center;
   padding: 20px 0;
   margin-bottom: 30px;
   background-color: #1a237e;
@@ -24,8 +23,46 @@ header {
   border-radius: 5px;
 }
 
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 0 20px;
+}
+
+@media (max-width: 700px) {
+  .header-main {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 header h1 {
   margin-bottom: 10px;
+}
+
+.user-controls {
+  position: relative;
+}
+
+.auth-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background-color: white;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  padding: 12px;
+  min-width: 220px;
+  z-index: 20;
+}
+
+.auth-panel p {
+  margin-bottom: 8px;
+  font-size: 14px;
 }
 
 main {
@@ -164,6 +201,20 @@ button:hover {
   background-color: #3949ab;
 }
 
+.secondary-btn {
+  background-color: #eceff1;
+  color: #263238;
+}
+
+.secondary-btn:hover {
+  background-color: #dfe5e8;
+}
+
+#message {
+  width: 100%;
+  max-width: 1030px;
+}
+
 .message {
   margin-top: 20px;
   padding: 10px;
@@ -190,6 +241,37 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 30;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 420px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
 }
 
 footer {
